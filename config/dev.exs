@@ -41,3 +41,6 @@ config :facebook_subscriptions, FacebookSubscriptions.Repo,
   database: "facebook_subscriptions_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :facebook_subscriptions, FacebookSubscriptions.FeedChangeView,
+  verify_token: "abc123"

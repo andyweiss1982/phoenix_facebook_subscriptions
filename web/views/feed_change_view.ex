@@ -1,12 +1,16 @@
 defmodule FacebookSubscriptions.FeedChangeView do
   use FacebookSubscriptions.Web, :view
+  @verify_token Application.get_env(:facebook_subscriptions, __MODULE__)[:verify_token]
 
-  def render("show.json", %{hub_challenge: hub_challenge}) do
-    String.to_integer(hub_challenge)
+  def render("show.json", %{challenge: challenge, verify_token: @verify_token}) do
+    String.to_integer(challenge)
+  end
+
+  def render("show.json", _) do
+    %{}
   end
 
   def render("create.json", _) do
-    %{
-    }
+    %{}
   end
 end
