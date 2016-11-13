@@ -17,12 +17,13 @@ defmodule FacebookSubscriptions.Router do
     pipe_through :browser # Use the default browser stack
 
     get   "/",              PageController,       :index
-    get   "/feed_change",   FeedChangeController, :show
-    post  "/feed_change",   FeedChangeController, :create
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", FacebookSubscriptions do
-  #   pipe_through :api
-  # end
+  scope "/api", FacebookSubscriptions do
+    pipe_through :api
+
+    get   "/feed_change",   FeedChangeController, :show
+    post  "/feed_change",   FeedChangeController, :create
+  end
 end
