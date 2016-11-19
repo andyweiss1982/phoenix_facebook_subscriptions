@@ -19,6 +19,13 @@ defmodule FacebookSubscriptions.Router do
     get   "/",              PageController,       :index
   end
 
+  scope "/auth", FacebookSubscriptions do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   scope "/api", FacebookSubscriptions do
     pipe_through :api
